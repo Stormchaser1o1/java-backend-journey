@@ -5,24 +5,24 @@
 > Update this file AND `web/src/data/progress.js` at the end of every session,
 > then run `cd web && npm run deploy` to publish the site.
 
-**Last session:** 2026-08-07 (Day 001)
+**Last session:** 2026-08-07 (Day 002)
 **Current Phase:** Phase 0 — Computer Fundamentals
-**Current Module:** Module 1 — What is Programming? How Computers Think and Execute Instructions
+**Current Module:** Module 2 — Binary, Bits, Bytes and How Data is Represented
 **Status:** Taught. Homework pending.
-**Overall progress:** ~0.5%
+**Overall progress:** ~2%
 
 ---
 
 ## Phase checklist
 
 ### Phase 0 — Computer Fundamentals
-- [x] M1  What is Programming? How Computers Think and Execute Instructions
-- [ ] M2  Inside the Machine: CPU, RAM, Storage, and the Fetch-Decode-Execute Cycle (deep dive)
-- [ ] M3  Binary, Bits, Bytes and How Data is Represented
-- [ ] M4  Compilers vs Interpreters — and where Java sits
-- [ ] M5  What is an Operating System? Processes, Memory, Files
-- [ ] M6  How the Internet Works: Client, Server, Request, Response
-- [ ] M7  Algorithms & Pseudocode — thinking before coding
+_Module list revised after Day 002 — "Inside the Machine" (CPU/RAM/Fetch-Decode-Execute) was taught as part of M1, not as a separate module._
+- [x] M1  What is Programming? + CPU/RAM/Storage and the Fetch-Decode-Execute Cycle
+- [x] M2  Binary, Bits, Bytes and How Data is Represented
+- [ ] M3  Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)
+- [ ] M4  What is an Operating System? Processes, Memory, Files
+- [ ] M5  How the Internet Works: Client, Server, Request, Response
+- [ ] M6  Algorithms & Pseudocode — thinking before coding
 
 ### Phase 1 — Java Fundamentals — not started
 ### Phase 2 — Object-Oriented Programming — not started
@@ -44,6 +44,7 @@
 | Topic | Taught on | Next revision |
 |-------|-----------|---------------|
 | P0-M1 What is Programming | 2026-08-07 | 2026-08-08 (1-day recall) |
+| P0-M2 Binary & Data Representation | 2026-08-07 | 2026-08-08 (1-day recall) |
 
 ## Weak areas
 _None recorded yet — will be filled from quiz performance._

@@ -6,15 +6,15 @@ const progress = {
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
     lastSession: "2026-08-07",
-    dayNumber: 1,
-    streakDays: 1,
-    overallProgressPercent: 0.5,
+    dayNumber: 2,
+    streakDays: 2,
+    overallProgressPercent: 2.0,
   },
   nextAction: {
     phase: "Phase 0 — Computer Fundamentals",
-    module: "M2 — Inside the Machine (deep dive) + Binary",
+    module: "M3 — Compilers, Interpreters, and the JVM",
     description:
-      "Why computers use only 0 and 1, how a number/letter/image becomes bits, and what a ‘32-bit int’ actually means — the direct prerequisite for Java's data types in Phase 1.",
+      "The full journey of Hello.java → javac → Hello.class → JVM → CPU. What class loading, bytecode verification and JIT actually do — the last stop before writing real Java.",
   },
   currentPhaseId: "p0",
   phases: [
@@ -23,13 +23,12 @@ const progress = {
       name: "Phase 0 — Computer Fundamentals",
       state: "current",
       modules: [
-        { id: "m1", name: "What is Programming? How Computers Think and Execute Instructions", done: true },
-        { id: "m2", name: "Inside the Machine: CPU, RAM, Storage, and the Fetch-Decode-Execute Cycle (deep dive)", done: false },
-        { id: "m3", name: "Binary, Bits, Bytes and How Data is Represented", done: false },
-        { id: "m4", name: "Compilers vs Interpreters — and where Java sits", done: false },
-        { id: "m5", name: "What is an Operating System? Processes, Memory, Files", done: false },
-        { id: "m6", name: "How the Internet Works: Client, Server, Request, Response", done: false },
-        { id: "m7", name: "Algorithms & Pseudocode — thinking before coding", done: false },
+        { id: "m1", name: "What is Programming? + CPU/RAM/Storage and the Fetch-Decode-Execute Cycle", done: true },
+        { id: "m2", name: "Binary, Bits, Bytes and How Data is Represented", done: true },
+        { id: "m3", name: "Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)", done: false },
+        { id: "m4", name: "What is an Operating System? Processes, Memory, Files", done: false },
+        { id: "m5", name: "How the Internet Works: Client, Server, Request, Response", done: false },
+        { id: "m6", name: "Algorithms & Pseudocode — thinking before coding", done: false },
       ],
     },
     { id: "p1", name: "Phase 1 — Java Fundamentals", state: "upcoming", modules: [] },
@@ -48,6 +47,7 @@ const progress = {
   ],
   revisionDue: [
     { topic: "P0-M1 What is Programming", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
+    { topic: "P0-M2 Binary & Data Representation", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
   ],
   weakAreas: [],
 };
