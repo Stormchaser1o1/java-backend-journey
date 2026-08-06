@@ -4,16 +4,28 @@ A day-by-day record of my path from zero programming knowledge to interview-read
 
 Started: **2026-08-07**
 
+## Live dashboard
+
+**https://stormchaser1o1.github.io/java-backend-journey/**
+
+A React app (`web/`) that renders the roadmap, current phase/module, "up next",
+revision schedule and weak areas straight from `web/src/data/progress.js`. It
+auto-deploys to GitHub Pages via GitHub Actions on every push to `main` that
+touches `web/`.
+
 ## Structure
 
 ```
 java-backend-journey/
-├── README.md               <- you are here
-├── PROGRESS.md             <- live dashboard: current phase, module, %, weak areas
-├── notes/                  <- day-wise notes, one file per session
+├── README.md                <- you are here
+├── PROGRESS.md               <- markdown log: current phase, module, %, weak areas
+├── notes/                    <- day-wise notes, one file per session
 │   └── phase-00-computer-fundamentals/
-├── code/                   <- every program I write, organised by phase
-└── projects/               <- full projects (Calculator -> E-Commerce Backend)
+├── code/                     <- every program I write, organised by phase
+├── projects/                 <- full projects (Calculator -> E-Commerce Backend)
+├── web/                       <- React dashboard (Vite), deployed to GitHub Pages
+│   └── src/data/progress.js   <- structured data the dashboard renders from
+└── .github/workflows/         <- CI: builds and deploys web/ to Pages
 ```
 
 ## Roadmap

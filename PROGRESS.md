@@ -1,6 +1,8 @@
 # Progress Dashboard
 
-> Single source of truth. Update at the end of every session.
+> Markdown log, kept in sync with `web/src/data/progress.js` (the live dashboard's data source).
+> Live version: https://stormchaser1o1.github.io/java-backend-journey/
+> Update this file AND `web/src/data/progress.js` at the end of every session.
 
 **Last session:** 2026-08-07 (Day 001)
 **Current Phase:** Phase 0 — Computer Fundamentals
@@ -49,3 +51,5 @@ _None recorded yet — will be filled from quiz performance._
 - [x] Install Git (`winget install --id Git.Git -e`)
 - [x] Create GitHub repo `java-backend-journey` and push
 - [x] JDK 25.0.3 verified working
+- [x] Install Node.js LTS (`winget install --id OpenJS.NodeJS.LTS -e`)
+- [x] Build React dashboard (`web/`) and wire up GitHub Actions deploy to Pages
