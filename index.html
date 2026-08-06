@@ -1,12 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/java-backend-journey/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08080c" />
+    <meta
+      name="description"
+      content="Progress dashboard for a 14-phase journey from zero to interview-ready Java Backend Engineer."
+    />
     <title>Java Backend Journey — Progress Dashboard</title>
-    <script type="module" crossorigin src="/java-backend-journey/assets/index-D3Q1AKUZ.js"></script>
-    <link rel="stylesheet" crossorigin href="/java-backend-journey/assets/index-s-XwvBxR.css">
+
+    <!-- Resolve theme before first paint so there is no light/dark flash. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('jbj-theme');
+          var theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute('content', theme === 'dark' ? '#08080c' : '#f6f6f9');
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="/java-backend-journey/assets/index-CE3dZA-Z.js"></script>
+    <link rel="stylesheet" crossorigin href="/java-backend-journey/assets/index-CnRp2ZAc.css">
   </head>
   <body>
     <div id="root"></div>
