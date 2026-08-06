@@ -2,7 +2,8 @@
 
 > Markdown log, kept in sync with `web/src/data/progress.js` (the live dashboard's data source).
 > Live version: https://stormchaser1o1.github.io/java-backend-journey/
-> Update this file AND `web/src/data/progress.js` at the end of every session.
+> Update this file AND `web/src/data/progress.js` at the end of every session,
+> then run `cd web && npm run deploy` to publish the site.
 
 **Last session:** 2026-08-07 (Day 001)
 **Current Phase:** Phase 0 — Computer Fundamentals

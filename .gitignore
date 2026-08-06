@@ -4,3 +4,6 @@ build/
 .vscode/
 *.iml
 .idea/
+
+# gh-pages worktree created by `npm run deploy`
+.deploy/
