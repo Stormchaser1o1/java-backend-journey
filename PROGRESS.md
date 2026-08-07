@@ -5,11 +5,14 @@
 > Update this file AND `web/src/data/progress.js` at the end of every session,
 > then run `cd web && npm run deploy` to publish the site.
 
-**Last session:** 2026-08-07 (Day 005)
-**Current Phase:** Phase 0 — Computer Fundamentals
-**Current Module:** Module 5 — How the Internet Works: Client, Server, Request, Response
-**Status:** Taught.
-**Overall progress:** ~4.5%
+**Last session:** 2026-08-07 (Day 006)
+**Current Phase:** Phase 1 — Java Fundamentals
+**Current Module:** Module 1 — Setting Up and Writing Your First Real Java Program
+**Status:** Not yet started.
+**Overall progress:** ~5.5%
+
+**Phase 0 — Computer Fundamentals: COMPLETE** (6/6 modules, Days 001-006)
+**Format note:** Phase 1 onward resumes full Q&A — Interactive Check, Debugging Exercise, and Homework are back.
 
 ---
 
@@ -23,9 +26,21 @@ _No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026
 - [x] M3  Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)
 - [x] M4  What is an Operating System? Processes, Memory, Files
 - [x] M5  How the Internet Works: Client, Server, Request, Response
-- [ ] M6  Algorithms & Pseudocode — thinking before coding — in progress
+- [x] M6  Algorithms & Pseudocode — thinking before coding
 
-### Phase 1 — Java Fundamentals — not started
+### Phase 1 — Java Fundamentals — IN PROGRESS
+_Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on every module._
+- [ ] M1  Setting up the environment; your first program; how compilation actually runs — in progress
+- [ ] M2  Variables, data types, and literals
+- [ ] M3  Operators (arithmetic, relational, logical, bitwise, assignment)
+- [ ] M4  Type conversion, casting, and overflow in practice
+- [ ] M5  Control flow: if/else, switch
+- [ ] M6  Loops: for, while, do-while, break/continue
+- [ ] M7  Arrays (1D and 2D)
+- [ ] M8  Strings and the String pool
+- [ ] M9  Methods: parameters, return types, overloading
+- [ ] M10  Scanner/user input and putting it together
+- [ ] M11  Project: Calculator (Phase 1 milestone)
 ### Phase 2 — Object-Oriented Programming — not started
 ### Phase 3 — Advanced Core Java — not started
 ### Phase 4 — Data Structures & Algorithms — not started
@@ -49,6 +64,7 @@ _No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026
 | P0-M3 Compilers, Interpreters, and the JVM | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M4 Operating Systems: Processes, Memory, Files | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M5 How the Internet Works | 2026-08-07 | 2026-08-08 (1-day recall) |
+| P0-M6 Algorithms & Pseudocode | 2026-08-07 | 2026-08-08 (1-day recall) |
 
 ## Weak areas
 _None recorded yet — will be filled from quiz performance._
