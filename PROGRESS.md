@@ -5,11 +5,11 @@
 > Update this file AND `web/src/data/progress.js` at the end of every session,
 > then run `cd web && npm run deploy` to publish the site.
 
-**Last session:** 2026-08-07 (Day 002)
+**Last session:** 2026-08-07 (Day 004)
 **Current Phase:** Phase 0 — Computer Fundamentals
-**Current Module:** Module 2 — Binary, Bits, Bytes and How Data is Represented
-**Status:** Taught. Homework pending.
-**Overall progress:** ~2%
+**Current Module:** Module 4 — What is an Operating System? Processes, Memory, Files
+**Status:** In progress.
+**Overall progress:** ~3.5%
 
 ---
 
@@ -17,10 +17,11 @@
 
 ### Phase 0 — Computer Fundamentals
 _Module list revised after Day 002 — "Inside the Machine" (CPU/RAM/Fetch-Decode-Execute) was taught as part of M1, not as a separate module._
+_No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026-08-07) — teach and move on. Full Q&A resumes at Phase 1._
 - [x] M1  What is Programming? + CPU/RAM/Storage and the Fetch-Decode-Execute Cycle
 - [x] M2  Binary, Bits, Bytes and How Data is Represented
-- [ ] M3  Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)
-- [ ] M4  What is an Operating System? Processes, Memory, Files
+- [x] M3  Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)
+- [ ] M4  What is an Operating System? Processes, Memory, Files — in progress
 - [ ] M5  How the Internet Works: Client, Server, Request, Response
 - [ ] M6  Algorithms & Pseudocode — thinking before coding
 
