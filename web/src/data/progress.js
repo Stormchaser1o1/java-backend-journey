@@ -6,15 +6,15 @@ const progress = {
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
     lastSession: "2026-08-07",
-    dayNumber: 4,
-    streakDays: 4,
-    overallProgressPercent: 3.5,
+    dayNumber: 5,
+    streakDays: 5,
+    overallProgressPercent: 4.5,
   },
   nextAction: {
     phase: "Phase 0 — Computer Fundamentals",
-    module: "M5 — How the Internet Works: Client, Server, Request, Response",
+    module: "M6 — Algorithms & Pseudocode: Thinking Before Coding",
     description:
-      "DNS, IP addresses, TCP/IP, and the HTTP request/response cycle — what actually happens between typing a URL and a page appearing. Groundwork for understanding what a backend actually is.",
+      "The final module of Phase 0 — breaking a problem into precise, ordered steps before touching syntax. The direct bridge into Phase 1, where that thinking becomes real Java code.",
   },
   currentPhaseId: "p0",
   phases: [
@@ -27,7 +27,7 @@ const progress = {
         { id: "m2", name: "Binary, Bits, Bytes and How Data is Represented", done: true },
         { id: "m3", name: "Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)", done: true },
         { id: "m4", name: "What is an Operating System? Processes, Memory, Files", done: true },
-        { id: "m5", name: "How the Internet Works: Client, Server, Request, Response", done: false },
+        { id: "m5", name: "How the Internet Works: Client, Server, Request, Response", done: true },
         { id: "m6", name: "Algorithms & Pseudocode — thinking before coding", done: false },
       ],
     },
@@ -50,6 +50,7 @@ const progress = {
     { topic: "P0-M2 Binary & Data Representation", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M3 Compilers, Interpreters, and the JVM", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M4 Operating Systems: Processes, Memory, Files", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
+    { topic: "P0-M5 How the Internet Works", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
   ],
   weakAreas: [],
 };

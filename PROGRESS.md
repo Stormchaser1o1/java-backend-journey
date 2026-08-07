@@ -5,11 +5,11 @@
 > Update this file AND `web/src/data/progress.js` at the end of every session,
 > then run `cd web && npm run deploy` to publish the site.
 
-**Last session:** 2026-08-07 (Day 004)
+**Last session:** 2026-08-07 (Day 005)
 **Current Phase:** Phase 0 — Computer Fundamentals
-**Current Module:** Module 4 — What is an Operating System? Processes, Memory, Files
-**Status:** In progress.
-**Overall progress:** ~3.5%
+**Current Module:** Module 5 — How the Internet Works: Client, Server, Request, Response
+**Status:** Taught.
+**Overall progress:** ~4.5%
 
 ---
 
@@ -21,9 +21,9 @@ _No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026
 - [x] M1  What is Programming? + CPU/RAM/Storage and the Fetch-Decode-Execute Cycle
 - [x] M2  Binary, Bits, Bytes and How Data is Represented
 - [x] M3  Compilers vs Interpreters, and the JVM (Hello.java → bytecode → CPU)
-- [ ] M4  What is an Operating System? Processes, Memory, Files — in progress
-- [ ] M5  How the Internet Works: Client, Server, Request, Response
-- [ ] M6  Algorithms & Pseudocode — thinking before coding
+- [x] M4  What is an Operating System? Processes, Memory, Files
+- [x] M5  How the Internet Works: Client, Server, Request, Response
+- [ ] M6  Algorithms & Pseudocode — thinking before coding — in progress
 
 ### Phase 1 — Java Fundamentals — not started
 ### Phase 2 — Object-Oriented Programming — not started
@@ -46,6 +46,9 @@ _No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026
 |-------|-----------|---------------|
 | P0-M1 What is Programming | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M2 Binary & Data Representation | 2026-08-07 | 2026-08-08 (1-day recall) |
+| P0-M3 Compilers, Interpreters, and the JVM | 2026-08-07 | 2026-08-08 (1-day recall) |
+| P0-M4 Operating Systems: Processes, Memory, Files | 2026-08-07 | 2026-08-08 (1-day recall) |
+| P0-M5 How the Internet Works | 2026-08-07 | 2026-08-08 (1-day recall) |
 
 ## Weak areas
 _None recorded yet — will be filled from quiz performance._
