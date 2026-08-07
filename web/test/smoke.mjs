@@ -87,8 +87,32 @@ const checks = [
   ['renders the stat grid', html.includes('stats-grid')],
   ['renders the progress ring', html.includes('ring-value')],
   ['renders the revision panel', html.includes('revision-list')],
+  ['renders module note toggles', (html.match(/has-note/g) || []).length >= 7],
+  ['renders the revision-mode button', html.includes('revision-toggle')],
   ['no NaN leaked into the DOM', !html.includes('NaN')],
 ];
+
+// Every note entry must point at a note file that actually exists on disk,
+// and be attached to a module id the roadmap really has.
+{
+  const { existsSync } = await import('node:fs');
+  const { default: notes } = await vite.ssrLoadModule('/src/data/notes.js');
+  const { default: progress } = await vite.ssrLoadModule('/src/data/progress.js');
+
+  const moduleKeys = new Set(
+    progress.phases.flatMap((p) => p.modules.map((m) => `${p.id}:${m.id}`))
+  );
+
+  const orphanKeys = Object.keys(notes).filter((k) => !moduleKeys.has(k));
+  const missingFiles = Object.values(notes)
+    .map((n) => n.path)
+    .filter((p) => !existsSync(new URL(`../../notes/${p}`, import.meta.url)));
+
+  checks.push(
+    [`every note maps to a real module${orphanKeys.length ? ` (${orphanKeys})` : ''}`, orphanKeys.length === 0],
+    [`every note file exists${missingFiles.length ? ` (${missingFiles})` : ''}`, missingFiles.length === 0]
+  );
+}
 
 let failed = 0;
 for (const [name, ok] of checks) {
