@@ -5,6 +5,39 @@
 > Update this file AND `web/src/data/progress.js` at the end of every session,
 > then run `cd web && npm run deploy` to publish the site.
 
+---
+
+## ▶ RESUME HERE (read this first in a new session)
+
+**Next action:** Teach **Phase 1 · Module 2 — Variables, Data Types, and Literals.**
+Nothing is pending from the user. M1 is fully reviewed and closed.
+
+**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1 complete (Day 007). Next note file is
+`notes/phase-01-java-fundamentals/day-008-variables-and-data-types.md`, next code dir is
+`code/phase-01-java-fundamentals/m2-variables/`.
+
+**Teaching loop (strict order, do not reorder):**
+1. Teach the module — 10-step order, ending with Interactive Check + Debugging Exercise + Homework.
+2. User answers → **review and correct thoroughly, then STOP.** Do not publish, do not advance.
+3. User says "publish" → update this file + `web/src/data/progress.js` + `web/src/data/notes.js`,
+   write the day note, commit + push to `main`, then `cd web && npm run deploy`.
+4. After publishing → immediately start the next module, no confirmation needed.
+
+**Standing rules:**
+- The user is a beginner; assume nothing, explain every keyword, use analogies and ASCII diagrams.
+- Never give a full solution immediately — Hint Mode: think → hint 1 → hint 2 → hint 3 → solution.
+- Commit messages: plain, **no `Co-Authored-By` trailer**.
+- JDK on this machine is **25.0.3** — verify language claims by actually running code before teaching
+  them. Java 25 has instance `main` (JEP 512), which invalidates several textbook explanations.
+- PowerShell is a new process per tool call; refresh PATH before `git`/`gh`/`npm`:
+  `$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")`
+
+**Carry-over from Day 007 (optional, not blocking):** hands-on homework items 1–4 — type/compile/run
+`Hello.java`, print own name, delete a semicolon and read the exact error, rename `main` and observe.
+These directly target the recorded weak area below.
+
+---
+
 **Last session:** 2026-08-09 (Day 007)
 **Current Phase:** Phase 1 — Java Fundamentals
 **Current Module:** Module 2 — Variables, Data Types, and Literals
