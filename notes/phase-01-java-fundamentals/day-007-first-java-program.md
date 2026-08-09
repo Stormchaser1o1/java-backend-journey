@@ -37,7 +37,7 @@ Every keyword, explained — nothing assumed:
 | `Hello` | The class **name**. In Java, **the file name must exactly match the public class name** — this file must be `Hello.java`, capital H, no exceptions. This is a compiler rule, not a style preference. |
 | `{ }` | Curly braces mark a **block** — everything belonging to the class, or to a method, is nested inside its own `{ }` pair. |
 | `public static void main(String[] args)` | The **entry point**. When you run `java Hello`, the JVM looks specifically for a method with exactly this signature and starts execution there. Nothing runs before this line is found. |
-| `static` | Means this method belongs to the **class itself**, not to any particular object of it. Necessary here because when the JVM starts, no object exists yet — there's nothing to call the method *on*. (Full meaning in Phase 2, once you know what an object is.) |
+| `static` | Means this method belongs to the **class itself**, not to any particular object of it. Historically this was *required* for `main`: at startup no object exists, so there was nothing to call the method *on*. **On Java 25 this is no longer strictly true** — see §4b. But `public static void main` remains the universal form in real code. (Full meaning in Phase 2.) |
 | `void` | This method returns **nothing**. Contrast with methods that return a value (Module 9). |
 | `main` | Not a keyword — just a method name. But it's the *specific* name the JVM is hardcoded to look for. Rename it and `java Hello` fails to find an entry point. |
 | `(String[] args)` | A **parameter**: an array of `String`s, holding any command-line arguments passed after `java Hello`. Empty if you didn't pass any — but the parameter must still be declared. |
@@ -93,6 +93,112 @@ Hello, World!
 
 ---
 
+---
+
+## 4b. Compile-time vs run-time — proven on this machine
+
+Four experiments, all run on this laptop's JDK 25.0.3. These settle questions that are easy to get wrong by reasoning alone.
+
+### Experiment 1 — a file with **no `main` method at all**
+
+```java
+public class NoMain {
+    public static void greet() { System.out.println("I have no main method."); }
+}
+```
+```
+javac NoMain.java     ->  exit 0, NoMain.class produced   ✅ COMPILES FINE
+java NoMain           ->  Error: Main method not found in class NoMain,
+                          please define the main method as:
+                             public static void main(String[] args)
+                          exit 1                           ❌ FAILS AT RUN
+```
+
+**Conclusion: `main` is a RUN-TIME requirement, not a compile-time one.** `javac` does not care whether `main` exists — it only checks the code is valid. It is the *JVM*, when you run `java NoMain`, that goes looking for an entry point and fails.
+
+### Experiment 2 — the exact filename-mismatch error
+
+`MyProgram.java` containing `public class Hello`:
+```
+javac MyProgram.java
+MyProgram.java:1: error: class Hello is public, should be declared in a file named Hello.java
+public class Hello {
+       ^
+1 error
+```
+Note the wording: `javac` had **no trouble finding** `MyProgram.java` — you named it on the command line. It opened it, read `public class Hello`, and *rejected* it for violating the public-class/filename rule.
+
+### Experiment 3 — the exact missing-semicolon error
+
+```
+javac MissingSemi.java
+MissingSemi.java:3: error: ';' expected
+        System.out.println("no semicolon here")
+                                               ^
+1 error
+```
+The caret `^` points at the exact column where the compiler expected the `;`. Compiler errors tell you **file : line : what was expected**, plus a caret at the position. Learn to read that shape.
+
+### Experiment 4 — silence means success
+
+```
+javac Hello.java      ->  (no output at all), exit 0
+java Hello            ->  Hello, World!
+```
+
+**`javac` printing nothing means "I found nothing to complain about."** This is the standard Unix convention: *no news is good news*. Compiler silence says nothing whatsoever about what the program prints — the program's output only appears when you **run** it with `java`. Two separate steps, two separate kinds of output:
+
+```
+   javac Hello.java     ->  output here = COMPILER ERRORS (silence = success)
+   java Hello           ->  output here = YOUR PROGRAM'S OUTPUT
+```
+
+---
+
+## 4c. ⚠️ Java 25 changes the `static` story (correction)
+
+Older material — including the first version of this note — says `main` **must** be `public static void main(String[] args)` because at startup no object exists for a non-static method to be called on.
+
+**On Java 25, that is no longer strictly true.** Tested on this machine:
+
+```java
+class Minimal {
+    void main() {                      // no public, no static, no String[] args
+        System.out.println("no public, no static, no args");
+    }
+}
+```
+```
+javac Minimal.java   ->  exit 0
+java Minimal         ->  no public, no static, no args      ✅ IT RUNS
+```
+
+Even this works — a file with **no class declaration at all**:
+```java
+void main() {
+    IO.println("no class declaration at all");
+}
+```
+```
+java Compact.java    ->  no class declaration at all         ✅ IT RUNS
+```
+
+This is **JEP 512 — Compact Source Files and Instance Main Methods**, finalized in Java 25. When `main` is an *instance* method, the JVM now constructs an object of the class for you and then calls `main` on it. The chicken-and-egg problem was solved by the JVM simply doing the instantiation itself.
+
+### So which form should you actually learn and write?
+
+**`public static void main(String[] args)` — without question.** Reasons:
+
+1. **Every real codebase uses it.** Every Spring Boot app, every library, every legacy system you will ever join.
+2. **Every interview expects it.** The instance-main feature is brand new; interviewers are asking about the classic form, and "why must it be static?" is still a standard question.
+3. **The new form is deliberately a beginner/scripting on-ramp** — it exists so a first Java lesson doesn't have to explain `public`, `static`, `String[]` and classes all at once. It is not what production code looks like.
+
+**How to answer the interview question now:** *"Classically, `main` must be `static` because the JVM has to call it before any object exists — there'd be nothing to invoke it on. As of Java 25 (JEP 512), an instance `main` is also permitted, and the JVM instantiates the class for you. But `public static void main(String[] args)` remains the standard form in all real code."*
+
+That answer is strictly better than the textbook one, and it shows you know the current language — not a version frozen years ago.
+
+---
+
 ## 5. Real-world usage
 
 Every single Spring Boot application you'll write from Phase 7 onward starts execution from a `main` method that looks almost exactly like this one — just with one extra line (`SpringApplication.run(...)`) that boots the whole framework. You just wrote the literal ancestor of every backend you're going to build.
@@ -114,6 +220,8 @@ Every single Spring Boot application you'll write from Phase 7 onward starts exe
 **Misconceptions**
 - ❌ "Java class names and file names can differ if I'm careful." → For a `public` class, they cannot — the compiler enforces this and will refuse to compile otherwise.
 - ❌ "`static` means 'constant' or 'unchangeable.'" → It means "belongs to the class, not an instance" — a completely different idea from constant-ness (`final` is the keyword for that, later).
+- ❌ "`main` is what tells the **compiler** where to start." → The compiler does not care about `main` at all (Experiment 1). `main` is what tells the **JVM** where to start, at run time.
+- ❌ "`javac` printing nothing means the program produced no output." → It means the *compiler* found no errors. Program output only appears when you run `java`.
 
 ---
 
@@ -128,7 +236,10 @@ Every single Spring Boot application you'll write from Phase 7 onward starts exe
 ## 8. Summary card
 
 - `public class Hello { ... }` — file must be named `Hello.java`.
-- `public static void main(String[] args)` — the fixed entry point signature the JVM looks for; `static` = belongs to the class, not an object; `void` = returns nothing.
+- `public static void main(String[] args)` — the entry point the **JVM** (not the compiler) looks for; `static` = belongs to the class, not an object; `void` = returns nothing.
+- **`main` is a run-time requirement, not a compile-time one** — a file with no `main` compiles perfectly and only fails when you run it.
+- **`javac` silence = no compile errors.** Program output appears only when you run `java`. Two steps, two different kinds of output.
+- Java 25 (JEP 512) also permits an *instance* `main` and even a class-less compact source file — but `public static void main(String[] args)` is what all real code and every interview uses.
 - `System.out.println(...)` — writes text + newline to the console.
 - Compile with `javac Hello.java` → produces `Hello.class`. Run with `java Hello` (no extension).
 - Every statement ends in `;`.

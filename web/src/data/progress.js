@@ -5,16 +5,16 @@ const progress = {
     title: "Java Backend Journey",
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
-    lastSession: "2026-08-07",
-    dayNumber: 6,
-    streakDays: 6,
-    overallProgressPercent: 5.5,
+    lastSession: "2026-08-09",
+    dayNumber: 7,
+    streakDays: 7,
+    overallProgressPercent: 6.5,
   },
   nextAction: {
     phase: "Phase 1 — Java Fundamentals",
-    module: "M1 — Setting Up and Writing Your First Real Java Program",
+    module: "M2 — Variables, Data Types, and Literals",
     description:
-      "Full Q&A rigor resumes here. Project structure, writing and running actual .java files, and translating Day 006's FindLargest/SumToN pseudocode into working Java.",
+      "Where Day 002's binary/byte/bit knowledge becomes real Java keywords: int, long, double, char, boolean — and Day 006's FindLargest pseudocode finally becomes working code.",
   },
   currentPhaseId: "p1",
   phases: [
@@ -36,7 +36,7 @@ const progress = {
       name: "Phase 1 — Java Fundamentals",
       state: "current",
       modules: [
-        { id: "m1", name: "Environment setup; first program; how compilation actually runs", done: false },
+        { id: "m1", name: "Environment setup; first program; how compilation actually runs", done: true },
         { id: "m2", name: "Variables, data types, and literals", done: false },
         { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: false },
         { id: "m4", name: "Type conversion, casting, and overflow in practice", done: false },
@@ -69,8 +69,18 @@ const progress = {
     { topic: "P0-M4 Operating Systems: Processes, Memory, Files", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M5 How the Internet Works", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M6 Algorithms & Pseudocode", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
+    { topic: "P1-M1 First Java Program (+ compile vs run)", taughtOn: "2026-08-07", nextRevision: "2026-08-10", label: "weak area" },
   ],
-  weakAreas: [],
+  weakAreas: [
+    {
+      topic: "Compile-time vs run-time",
+      note: "Day 007 Q1 said main tells the compiler where to start — it's the JVM, at run time. Q4 read javac's silence as 'the program printed nothing'; it means 'no compile errors'. Re-read Day 007 §4b: four live experiments settle it.",
+    },
+    {
+      topic: "Writing every step explicitly",
+      note: "Day 001 ATM: knew the balance check was needed and described it, but never wrote it as a step. Improving — Day 007 debugging was 4/4. Keep dry-running edge cases.",
+    },
+  ],
 };
 
 export default progress;

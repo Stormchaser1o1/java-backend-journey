@@ -178,24 +178,25 @@ const notes = {
     path: 'phase-01-java-fundamentals/day-007-first-java-program.md',
     keyPoints: [
       'For a `public` class, **the file name must exactly match the class name** — `Hello.java` for `public class Hello`. Compiler rule, not style.',
-      '`public static void main(String[] args)` is the fixed entry point the JVM looks for. Rename it and `java Hello` finds nothing to run.',
-      '`static` = belongs to the **class**, not an object — needed because no object exists yet when the JVM starts. It does *not* mean "constant" (that is `final`).',
-      '`void` = returns nothing. `args` = command-line arguments, always as `String`s.',
-      '`javac Hello.java` → `Hello.class` (bytecode). Run with `java Hello` — **no** `.class` extension.',
-      'Every statement ends with a `;` — the compiler uses it to know where an instruction ends.',
+      '`public static void main(String[] args)` is the entry point the **JVM** looks for — *not* the compiler. The compiler does not care whether `main` exists.',
+      '**`main` is a run-time requirement.** A file with no `main` compiles fine (exit 0, `.class` produced) and only fails at `java` with `Error: Main method not found`.',
+      '**`javac` printing nothing means "no compile errors"** — Unix convention, no news is good news. Your program’s output appears only when you run `java`. Two steps, two kinds of output.',
+      '`static` = belongs to the **class**, not an object. It does *not* mean "constant" (that is `final`).',
+      '⚠️ **Java 25 (JEP 512)** also allows an *instance* `main` — even `void main()` with no `public`, `static` or args, and even a file with no class at all. But `public static void main(String[] args)` is what all real code and every interview uses.',
+      '`javac Hello.java` → `Hello.class` (bytecode). Run with `java Hello` — **no** `.class` extension. Every statement ends with `;`.',
     ],
     interview: [
       {
         q: 'Can a Java file compile without a `main` method?',
-        a: 'Yes. `javac` only checks the code is valid; `main` is a **runtime** requirement. Running it gives `Error: Main method not found`, not a compile error.',
+        a: 'Yes — verified on JDK 25. `javac` only checks the code is valid; `main` is a **runtime** requirement. Running it gives `Error: Main method not found`, not a compile error.',
+      },
+      {
+        q: 'Why must `main` be `static`?',
+        a: 'Classically: the JVM must call it before any object exists, so there would be nothing to invoke it on. As of Java 25 (JEP 512) an instance `main` is also allowed and the JVM instantiates the class for you — but `public static void main(String[] args)` remains the standard form.',
       },
       {
         q: 'Why must the file name match the public class name?',
-        a: 'The compiler enforces it for `public` classes so a class can always be located from its name alone.',
-      },
-      {
-        q: 'What does `static` actually mean?',
-        a: 'The member belongs to the class itself rather than to any instance, so it can be called without creating an object.',
+        a: 'The compiler enforces it for `public` classes so a class can always be located from its name alone. Exact error: `class Hello is public, should be declared in a file named Hello.java`.',
       },
     ],
   },

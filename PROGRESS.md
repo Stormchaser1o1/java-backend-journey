@@ -5,11 +5,11 @@
 > Update this file AND `web/src/data/progress.js` at the end of every session,
 > then run `cd web && npm run deploy` to publish the site.
 
-**Last session:** 2026-08-07 (Day 006)
+**Last session:** 2026-08-09 (Day 007)
 **Current Phase:** Phase 1 — Java Fundamentals
-**Current Module:** Module 1 — Setting Up and Writing Your First Real Java Program
-**Status:** Not yet started.
-**Overall progress:** ~5.5%
+**Current Module:** Module 2 — Variables, Data Types, and Literals
+**Status:** M1 complete — Q&A reviewed, 4/4 on the debugging exercise. Awaiting go-ahead for M2.
+**Overall progress:** ~6.5%
 
 **Phase 0 — Computer Fundamentals: COMPLETE** (6/6 modules, Days 001-006)
 **Format note:** Phase 1 onward resumes full Q&A — Interactive Check, Debugging Exercise, and Homework are back.
@@ -30,7 +30,7 @@ _No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026
 
 ### Phase 1 — Java Fundamentals — IN PROGRESS
 _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on every module._
-- [ ] M1  Setting up the environment; your first program; how compilation actually runs — in progress
+- [x] M1  Setting up the environment; your first program; how compilation actually runs _(Q&A reviewed; note corrected for Java 25 instance-main)_
 - [ ] M2  Variables, data types, and literals
 - [ ] M3  Operators (arithmetic, relational, logical, bitwise, assignment)
 - [ ] M4  Type conversion, casting, and overflow in practice
@@ -65,9 +65,13 @@ _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on e
 | P0-M4 Operating Systems: Processes, Memory, Files | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M5 How the Internet Works | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M6 Algorithms & Pseudocode | 2026-08-07 | 2026-08-08 (1-day recall) |
+| P1-M1 First Java Program (+ compile vs run) | 2026-08-07 | 2026-08-10 (weak area — revisit) |
 
 ## Weak areas
-_None recorded yet — will be filled from quiz performance._
+| Area | Evidence | Fix |
+|------|----------|-----|
+| **Compile-time vs run-time** | Day 007 Q1 said `main` tells the *compiler* where to start (it's the JVM, at run time). Q4 read `javac` silence as "the program printed nothing" (it means "no compile errors"). | Re-read Day 007 §4b — four live experiments on this machine settle it. Revisit before Phase 1 M4. |
+| Writing every step explicitly | Day 001 ATM exercise: knew the balance check was needed, described it, but never wrote it as a step; "check PIN" had no branch. | Improving — Day 007 debugging exercise was 4/4. Keep dry-running edge cases. |
 
 ## Environment TODO
 - [x] Install Git (`winget install --id Git.Git -e`)

@@ -824,11 +824,11 @@ button.module-row {
 .weak-list {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
+  gap: var(--sp-4);
 }
 .weak {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--sp-3);
   font-size: var(--text-sm);
   color: var(--fg-secondary);
@@ -836,9 +836,24 @@ button.module-row {
 .weak-dot {
   width: 6px;
   height: 6px;
+  margin-top: 0.45em;
   border-radius: var(--r-full);
   background: var(--warn);
   flex-shrink: 0;
+}
+.weak-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.weak-topic {
+  font-weight: 600;
+  color: var(--fg-primary);
+}
+.weak-note {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--fg-muted);
 }
 
 /* ---------- empty states ---------- */

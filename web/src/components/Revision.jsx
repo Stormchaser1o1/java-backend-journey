@@ -118,9 +118,12 @@ function WeakAreasCard({ weakAreas }) {
       ) : (
         <ul className="weak-list">
           {weakAreas.map((w) => (
-            <li key={w} className="weak">
+            <li key={w.topic} className="weak">
               <span className="weak-dot" aria-hidden="true" />
-              {w}
+              <span className="weak-body">
+                <span className="weak-topic">{w.topic}</span>
+                <span className="weak-note">{w.note}</span>
+              </span>
             </li>
           ))}
         </ul>
