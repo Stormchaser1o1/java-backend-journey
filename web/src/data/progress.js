@@ -5,16 +5,16 @@ const progress = {
     title: "Java Backend Journey",
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
-    lastSession: "2026-08-09",
-    dayNumber: 7,
-    streakDays: 7,
-    overallProgressPercent: 6.5,
+    lastSession: "2026-08-10",
+    dayNumber: 8,
+    streakDays: 8,
+    overallProgressPercent: 7.5,
   },
   nextAction: {
     phase: "Phase 1 — Java Fundamentals",
-    module: "M2 — Variables, Data Types, and Literals",
+    module: "M3 — Operators",
     description:
-      "Where Day 002's binary/byte/bit knowledge becomes real Java keywords: int, long, double, char, boolean — and Day 006's FindLargest pseudocode finally becomes working code.",
+      "Arithmetic, relational, logical, bitwise and assignment operators — including &, |, ^, << and >>, which act directly on the bit patterns from Day 002, and the short-circuit behaviour of && and || that every backend relies on for null-safety.",
   },
   currentPhaseId: "p1",
   phases: [
@@ -37,7 +37,7 @@ const progress = {
       state: "current",
       modules: [
         { id: "m1", name: "Environment setup; first program; how compilation actually runs", done: true },
-        { id: "m2", name: "Variables, data types, and literals", done: false },
+        { id: "m2", name: "Variables, data types, and literals", done: true },
         { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: false },
         { id: "m4", name: "Type conversion, casting, and overflow in practice", done: false },
         { id: "m5", name: "Control flow: if/else, switch", done: false },
@@ -69,16 +69,17 @@ const progress = {
     { topic: "P0-M4 Operating Systems: Processes, Memory, Files", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M5 How the Internet Works", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M6 Algorithms & Pseudocode", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
-    { topic: "P1-M1 First Java Program (+ compile vs run)", taughtOn: "2026-08-07", nextRevision: "2026-08-10", label: "weak area" },
+    { topic: "P1-M1 First Java Program (+ compile vs run)", taughtOn: "2026-08-07", nextRevision: "2026-08-13", label: "weak area CLOSED — 3-day recall" },
+    { topic: "P1-M2 Variables, Data Types & Literals", taughtOn: "2026-08-10", nextRevision: "2026-08-11", label: "1-day recall" },
   ],
   weakAreas: [
     {
-      topic: "Compile-time vs run-time",
-      note: "Day 007 Q1 said main tells the compiler where to start — it's the JVM, at run time. Q4 read javac's silence as 'the program printed nothing'; it means 'no compile errors'. Re-read Day 007 §4b: four live experiments settle it.",
+      topic: "Applying the fix, not just describing it",
+      note: "Day 008: correctly diagnosed `byte retries = 200;` but left the fix in a comment instead of the code — three submissions before it compiled. Same shape as Day 001's ATM balance check, described but never written as a step. Rule from now on: edit, then run javac, before calling it done.",
     },
     {
-      topic: "Writing every step explicitly",
-      note: "Day 001 ATM: knew the balance check was needed and described it, but never wrote it as a step. Improving — Day 007 debugging was 4/4. Keep dry-running edge cases.",
+      topic: "char arithmetic — +1 vs +32",
+      note: "Day 008 Q3: answered (char)('A' + 1) as 'a'. Right mechanism, wrong constant — +1 gives the next letter ('B'); +32 is the upper→lower case gap from the Day 002 ASCII table.",
     },
   ],
 };

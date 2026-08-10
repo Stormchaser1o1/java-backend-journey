@@ -200,6 +200,49 @@ const notes = {
       },
     ],
   },
+
+  'p1:m2': {
+    day: 8,
+    path: 'phase-01-java-fundamentals/day-008-variables-and-data-types.md',
+    keyPoints: [
+      'A **variable** is a named, typed box in RAM. The **type is a promise about how to read the bits** — enforced by the compiler, which is what *statically typed* means.',
+      '**Declaration** (`int age;`) → **assignment** (`age = 25;`) → or both at once. The type is written **exactly once**; repeating it is an error. `=` means "put the right side into the left box", not equality.',
+      '**8 primitives:** `byte`(8) `short`(16) `int`(32) `long`(64) `float`(32) `double`(64) `char`(16, **unsigned**) `boolean`(**size unspecified**). Default to `int` and `double`.',
+      'Ranges come from Day 002: signed `n` bits → −2^(n−1) … 2^(n−1)−1. `byte` is **−128 … 127** — asymmetric because zero takes a slot on the positive side.',
+      '**Literal defaults:** an undecorated whole number is an `int`; an undecorated decimal is a `double`. `L` and `f` override that. `long x = 3000000000;` fails at the *literal*, before the assignment is even considered.',
+      "`'A'` = char (single quotes) · `\"A\"` = String (double quotes). `0b` = binary, `0x` = hex, and a **leading zero means octal** — `010` is 8, not 10.",
+      "**Gotchas, all from Day 002:** overflow wraps silently (the carry lands in the sign bit); `0.1 + 0.2 != 0.3`; `7 / 2 == 3` (truncated, not rounded); `'A' == 65`, `'A' + 1` → `'B'`, `'a' - 'A'` == 32.",
+      '**Local variables have no default value** — reading one before assignment is a compile error (*definite assignment*). Only *fields* default to 0/false/null.',
+      "**`javac` runs in phases:** parse → type-check → flow analysis. A failure in an early phase **hides every later-phase error**, and any error at all means **no `.class` file is produced**. That's why 5 bugs reported as 1 → 3 → 1.",
+      '**Never store money in `double`/`float`** — use `long` cents or `BigDecimal`. `var` (Java 10+) infers the type at *compile* time; it is not dynamic typing.',
+    ],
+    interview: [
+      {
+        q: 'Why does `0.1 + 0.2 != 0.3`?',
+        a: "Binary floating point can't represent 0.1 exactly — it's an infinitely repeating fraction, like 1/3 in decimal. IEEE-754 stores the nearest approximation, and the error surfaces on comparison: the sum prints as `0.30000000000000004`.",
+      },
+      {
+        q: 'What is the size of a `boolean` in Java?',
+        a: '**Unspecified** — the JVM spec deliberately leaves it to the implementation. Anyone confidently answering "1 bit" is guessing.',
+      },
+      {
+        q: 'Why does `long x = 3000000000;` fail but `3000000000L` work?',
+        a: 'Undecorated integer literals are `int` literals. The compiler rejects it while *parsing the literal* (`error: integer number too large`), before it ever looks at the `long` on the left. The `L` suffix makes it a `long` literal.',
+      },
+      {
+        q: 'What is the default value of an uninitialised local `int`?',
+        a: 'It has none. The compiler tracks *definite assignment* and refuses to compile a read before a write: `variable total might not have been initialized`. Only **fields** get defaults (0/false/null).',
+      },
+      {
+        q: 'Is `char` signed or unsigned?',
+        a: 'Unsigned, 0–65535 — the only unsigned primitive in Java. It is genuinely a number: `(int) \'A\'` is 65.',
+      },
+      {
+        q: 'Which type would you use for a money amount, and why not `double`?',
+        a: '`long` holding cents, or `BigDecimal`. `double` cannot represent values like 499.99 exactly, and the rounding errors accumulate across quantity, tax and totals into invoices off by a cent.',
+      },
+    ],
+  },
 };
 
 /** Full note on GitHub for a given entry. */

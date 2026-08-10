@@ -9,12 +9,12 @@
 
 ## ▶ RESUME HERE (read this first in a new session)
 
-**Next action:** Teach **Phase 1 · Module 2 — Variables, Data Types, and Literals.**
-Nothing is pending from the user. M1 is fully reviewed and closed.
+**Next action:** Teach **Phase 1 · Module 3 — Operators.**
+Nothing is pending from the user. M2 is fully reviewed, closed and published.
 
-**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1 complete (Day 007). Next note file is
-`notes/phase-01-java-fundamentals/day-008-variables-and-data-types.md`, next code dir is
-`code/phase-01-java-fundamentals/m2-variables/`.
+**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1–M2 complete (Days 007–008). Next note
+file is `notes/phase-01-java-fundamentals/day-009-operators.md`, next code dir is
+`code/phase-01-java-fundamentals/m3-operators/`.
 
 **Teaching loop (strict order, do not reorder):**
 1. Teach the module — 10-step order, ending with Interactive Check + Debugging Exercise + Homework.
@@ -32,17 +32,19 @@ Nothing is pending from the user. M1 is fully reviewed and closed.
 - PowerShell is a new process per tool call; refresh PATH before `git`/`gh`/`npm`:
   `$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")`
 
-**Carry-over from Day 007 (optional, not blocking):** hands-on homework items 1–4 — type/compile/run
-`Hello.java`, print own name, delete a semicolon and read the exact error, rename `main` and observe.
-These directly target the recorded weak area below.
+**Carry-over from Day 008 (optional, not blocking):** homework items 2–4 — write `MyProfile.java`
+using all 8 primitives, break it three ways on purpose and record the exact compiler errors, and
+predict the four floating-point/division outputs on paper before running them.
 
 ---
 
-**Last session:** 2026-08-09 (Day 007)
+**Last session:** 2026-08-10 (Day 008)
 **Current Phase:** Phase 1 — Java Fundamentals
-**Current Module:** Module 2 — Variables, Data Types, and Literals
-**Status:** M1 complete — Q&A reviewed, 4/4 on the debugging exercise. Awaiting go-ahead for M2.
-**Overall progress:** ~6.5%
+**Current Module:** Module 3 — Operators
+**Status:** M2 complete — Q&A reviewed, **5/5 on the debugging exercise**, working `Config.java`
+verified (`javac` exit 0, prints `10000`). **Weak area "compile-time vs run-time" CLOSED** via two
+hands-on drills. Awaiting go-ahead for M3.
+**Overall progress:** ~7.5%
 
 **Phase 0 — Computer Fundamentals: COMPLETE** (6/6 modules, Days 001-006)
 **Format note:** Phase 1 onward resumes full Q&A — Interactive Check, Debugging Exercise, and Homework are back.
@@ -64,7 +66,7 @@ _No quiz / debugging exercise / homework for Phase 0 modules (user request, 2026
 ### Phase 1 — Java Fundamentals — IN PROGRESS
 _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on every module._
 - [x] M1  Setting up the environment; your first program; how compilation actually runs _(Q&A reviewed; note corrected for Java 25 instance-main)_
-- [ ] M2  Variables, data types, and literals
+- [x] M2  Variables, data types, and literals _(Q&A reviewed; 5/5 debugging; compiler-phase pipeline discovered by experiment)_
 - [ ] M3  Operators (arithmetic, relational, logical, bitwise, assignment)
 - [ ] M4  Type conversion, casting, and overflow in practice
 - [ ] M5  Control flow: if/else, switch
@@ -98,13 +100,19 @@ _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on e
 | P0-M4 Operating Systems: Processes, Memory, Files | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M5 How the Internet Works | 2026-08-07 | 2026-08-08 (1-day recall) |
 | P0-M6 Algorithms & Pseudocode | 2026-08-07 | 2026-08-08 (1-day recall) |
-| P1-M1 First Java Program (+ compile vs run) | 2026-08-07 | 2026-08-10 (weak area — revisit) |
+| P1-M1 First Java Program (+ compile vs run) | 2026-08-07 | 2026-08-13 (weak area CLOSED — 3-day recall) |
+| P1-M2 Variables, Data Types & Literals | 2026-08-10 | 2026-08-11 (1-day recall) |
 
 ## Weak areas
 | Area | Evidence | Fix |
 |------|----------|-----|
-| **Compile-time vs run-time** | Day 007 Q1 said `main` tells the *compiler* where to start (it's the JVM, at run time). Q4 read `javac` silence as "the program printed nothing" (it means "no compile errors"). | Re-read Day 007 §4b — four live experiments on this machine settle it. Revisit before Phase 1 M4. |
-| Writing every step explicitly | Day 001 ATM exercise: knew the balance check was needed, described it, but never wrote it as a step; "check PIN" had no branch. | Improving — Day 007 debugging exercise was 4/4. Keep dry-running edge cases. |
+| **Applying the fix, not just describing it** | Day 008: diagnosed `byte retries = 200;` correctly, but left the fix in a comment instead of the code — three submissions before it compiled. Same shape as Day 001's ATM balance check: described, never written as a step. | **Edit, then run `javac`, before calling it done.** Diagnosis has never been the problem; the last step is. |
+| char arithmetic — `+1` vs `+32` | Day 008 Q3: answered `(char)('A' + 1)` as `'a'`. Right mechanism, wrong constant. | `+1` → next letter (`'B'`); `+32` → upper→lower case, the gap from the Day 002 ASCII table. |
+
+## Weak areas — closed
+| Area | Closed on | How |
+|------|-----------|-----|
+| **Compile-time vs run-time** | 2026-08-10 | Missed four times across Days 007–008, then closed by running two drills: a missing semicolon (`javac` fails at lex+parse, **no `.class` produced**) vs a renamed `main` (`javac` succeeds, `.class` exists, the **JVM** fails to find the entry point). Reading the explanation didn't work; running the experiment did. |
 
 ## Environment TODO
 - [x] Install Git (`winget install --id Git.Git -e`)
