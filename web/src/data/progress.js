@@ -5,16 +5,16 @@ const progress = {
     title: "Java Backend Journey",
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
-    lastSession: "2026-08-10",
-    dayNumber: 8,
-    streakDays: 8,
-    overallProgressPercent: 7.5,
+    lastSession: "2026-08-12",
+    dayNumber: 9,
+    streakDays: 9,
+    overallProgressPercent: 8.5,
   },
   nextAction: {
     phase: "Phase 1 — Java Fundamentals",
-    module: "M3 — Operators",
+    module: "M4 — Type Conversion, Casting, and Overflow",
     description:
-      "Arithmetic, relational, logical, bitwise and assignment operators — including &, |, ^, << and >>, which act directly on the bit patterns from Day 002, and the short-circuit behaviour of && and || that every backend relies on for null-safety.",
+      "Day 009's (double) cast, the hidden truncation inside +=, and the binary-search midpoint overflow stop being side notes and become the subject: widening vs narrowing, implicit promotion rules, and how to make overflow fail loudly instead of silently.",
   },
   currentPhaseId: "p1",
   phases: [
@@ -38,7 +38,7 @@ const progress = {
       modules: [
         { id: "m1", name: "Environment setup; first program; how compilation actually runs", done: true },
         { id: "m2", name: "Variables, data types, and literals", done: true },
-        { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: false },
+        { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: true },
         { id: "m4", name: "Type conversion, casting, and overflow in practice", done: false },
         { id: "m5", name: "Control flow: if/else, switch", done: false },
         { id: "m6", name: "Loops: for, while, do-while, break/continue", done: false },
@@ -70,12 +70,17 @@ const progress = {
     { topic: "P0-M5 How the Internet Works", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P0-M6 Algorithms & Pseudocode", taughtOn: "2026-08-07", nextRevision: "2026-08-08", label: "1-day recall" },
     { topic: "P1-M1 First Java Program (+ compile vs run)", taughtOn: "2026-08-07", nextRevision: "2026-08-13", label: "weak area CLOSED — 3-day recall" },
-    { topic: "P1-M2 Variables, Data Types & Literals", taughtOn: "2026-08-10", nextRevision: "2026-08-11", label: "1-day recall" },
+    { topic: "P1-M2 Variables, Data Types & Literals", taughtOn: "2026-08-10", nextRevision: "2026-08-15", label: "3-day recall" },
+    { topic: "P1-M3 Operators", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
   ],
   weakAreas: [
     {
-      topic: "Applying the fix, not just describing it",
-      note: "Day 008: correctly diagnosed `byte retries = 200;` but left the fix in a comment instead of the code — three submissions before it compiled. Same shape as Day 001's ATM balance check, described but never written as a step. Rule from now on: edit, then run javac, before calling it done.",
+      topic: "Compiling is not correctness",
+      note: "Day 009: the first Cart.java submission compiled AND ran, while still printing `false` for a 7-item cart and `-56` for a discount of 200 — two of four bugs untouched, one 'fixed' by hardcoding `hasItems = false` to silence the compile error rather than restoring the intent. Same shape as Day 008's byte fix left in a comment. Rule: edit, run, then check the output against what it SHOULD say.",
+    },
+    {
+      topic: "Right answer, mechanism stated backwards",
+      note: "Day 009 Q2 described `++i` as 'use 11, then increment' (it increments first, then hands over 12), and Q4 explained `&`'s crash as 'checks right to left' (Java is ALWAYS left to right; `&` simply evaluates the right side even when the answer is settled). Both conclusions were correct — verify the reasoning, not just the result.",
     },
     {
       topic: "char arithmetic — +1 vs +32",

@@ -243,6 +243,50 @@ const notes = {
       },
     ],
   },
+
+  'p1:m3': {
+    day: 9,
+    path: 'phase-01-java-fundamentals/day-009-operators.md',
+    keyPoints: [
+      '**An operator looks only at its own operands.** `int op int` → `int`, whatever you assign it to. `double avg = 2500 / 7;` is `357.0` — the remainder is gone before the assignment happens.',
+      '**Cast an operand, not the result:** `(double) a / b` ✅, `(double)(a / b)` ❌. Same rule fixes overflow: `100000L * 100000`, not `(long)(100000 * 100000)`.',
+      '`=` assigns, `==` compares. Java catches `if (x = 5)` (`int cannot be converted to boolean`) — **except** when the variable is already `boolean`, where `if (flag = true)` compiles and is always true.',
+      '`i++` hands over the **old** value then increments; `++i` increments **first**, then hands over the new one. `int i = 10; int j = i++ + ++i;` → `j = 22`, `i = 12`.',
+      '**`&&`/`||` short-circuit; `&`/`|` do not.** Evaluation is **always left to right** — short-circuiting decides whether the right side runs *at all*, not the order.',
+      'That is what makes `s != null && s.length() > 0` safe. Swap to `&` and it throws NullPointerException; put the guard second and it throws too. **Guard first, always `&&`.**',
+      '**Bitwise:** `&` both, `|` either, `^` differ, `~` flip. `<< n` = ×2ⁿ, `>> n` = ÷2ⁿ. `>>` keeps the sign bit, `>>>` shifts in zeros: `-8 >> 1` is `-4`, `-8 >>> 1` is `2147483644`.',
+      "`(low + high) >>> 1` is the overflow-safe binary-search midpoint. `low + high` can overflow to negative; the **bit pattern is still right**, only the sign bit makes Java misread it — `>>>` restores the reading, `/ 2` faithfully halves the wrong number. A real bug in Java's own `Arrays.binarySearch()` for nine years.",
+      '**`a += b` is `a = (type of a)(a + b)`** — a narrowing cast you never wrote. `byte b = 10; b += 300;` compiles and gives **54** (the low 8 bits of 310), while `b = b + 300;` is rejected outright.',
+      '`7 / 0` throws `ArithmeticException` at **run time**; `7.0 / 0` is `Infinity` and `0.0 / 0` is `NaN`, no crash. **Both compile** — the integer one only fails when executed.',
+      'Precedence worth memorising: `*` `/` `%` before `+` `-`, and `&&` before `||`. **Bracket everything else.**',
+    ],
+    interview: [
+      {
+        q: 'Difference between `&` and `&&`?',
+        a: 'Same boolean result, different evaluation. `&&` **short-circuits** — if the left side settles the answer, the right side never runs. `&` always evaluates both. Java evaluates left to right in both cases; short-circuiting is about *whether* the right side runs, not the order.',
+      },
+      {
+        q: 'Why is `double avg = 5 / 2;` equal to 2.0?',
+        a: 'Both operands are `int`, so integer division runs first and truncates to 2. The promotion to `double` happens afterwards — too late. Fix by casting an operand: `(double) 5 / 2`.',
+      },
+      {
+        q: 'Why `(low + high) >>> 1` instead of `/ 2` for a binary-search midpoint?',
+        a: '`low + high` can overflow past `Integer.MAX_VALUE` and be read as negative, giving a negative index. The bit pattern is still correct — only the sign bit misleads. `>>>` shifts a 0 into the leftmost position and restores the true value; `/ 2` (like `>>`) preserves the sign and faithfully halves the wrong number.',
+      },
+      {
+        q: 'Does `byte b = 10; b += 300;` compile, and what is `b`?',
+        a: 'It compiles, and `b` is **54**. `+=` expands to `b = (byte)(b + 300)` — an implicit narrowing cast. 310 keeps only its low 8 bits (`00110110`). Writing `b = b + 300;` has no cast, so the compiler rejects it as a lossy conversion.',
+      },
+      {
+        q: 'What do `1 / 0` and `1.0 / 0` do?',
+        a: '`ArithmeticException: / by zero` versus `Infinity` (and `0.0 / 0` is `NaN`), because IEEE-754 defines those floating-point results. **Both compile** — the integer one is a run-time failure, not a compile-time one.',
+      },
+      {
+        q: 'What is `-7 % 2`, and `-7 / 2`?',
+        a: '`-1` and `-3`. The sign of `%` follows the **left** operand, and `/` truncates **toward zero** — not downward, so `-7 / 2` is `-3`, not `-4`.',
+      },
+    ],
+  },
 };
 
 /** Full note on GitHub for a given entry. */
