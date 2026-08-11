@@ -9,12 +9,12 @@
 
 ## ▶ RESUME HERE (read this first in a new session)
 
-**Next action:** Teach **Phase 1 · Module 4 — Type Conversion, Casting, and Overflow.**
-Nothing is pending from the user. M3 is fully reviewed, closed and published.
+**Next action:** Teach **Phase 1 · Module 5 — Control Flow: `if`/`else` and `switch`.**
+Nothing is pending from the user. M4 is fully reviewed, closed and published.
 
-**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1–M3 complete (Days 007–009). Next note
-file is `notes/phase-01-java-fundamentals/day-010-type-conversion-and-casting.md`, next code dir is
-`code/phase-01-java-fundamentals/m4-casting/`.
+**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1–M4 complete (Days 007–010). Next note
+file is `notes/phase-01-java-fundamentals/day-011-control-flow.md`, next code dir is
+`code/phase-01-java-fundamentals/m5-control-flow/`.
 
 **Teaching loop (strict order, do not reorder):**
 1. Teach the module — 10-step order, ending with Interactive Check + Debugging Exercise + Homework.
@@ -38,14 +38,14 @@ the three deliberate-error experiments; `Even.java` (ternary + `%`); the five di
 
 ---
 
-**Last session:** 2026-08-12 (Day 009)
+**Last session:** 2026-08-12 (Day 010)
 **Current Phase:** Phase 1 — Java Fundamentals
-**Current Module:** Module 4 — Type Conversion, Casting, and Overflow
-**Status:** M3 complete — Q&A reviewed (**Q3 bitwise 5/5**), **debugging exercise 4/4** with
-`Cart.java` verified (`javac` exit 0, prints `357.14285714285717 true 200`). Three concepts
-re-explained on request (`&` vs `&&`, `>>>` vs `/2`, the hidden cast in `+=`) and captured as
-`Explained.java`. Awaiting go-ahead for M4.
-**Overall progress:** ~8.5%
+**Current Module:** Module 5 — Control Flow: `if`/`else` and `switch`
+**Status:** M4 complete — Q&A reviewed (**Q3 5/5**, including clamping vs wrapping), debugging
+exercise solved over three attempts and committed as `Report.java` (`javac` exit 0, prints
+`2400000000 75.0 6 42`). Cast placement is the new recorded weak area — see §4e of the Day 010 note.
+Awaiting go-ahead for M5.
+**Overall progress:** ~9.5%
 
 **Phase 0 — Computer Fundamentals: COMPLETE** (6/6 modules, Days 001-006)
 **Format note:** Phase 1 onward resumes full Q&A — Interactive Check, Debugging Exercise, and Homework are back.
@@ -69,7 +69,7 @@ _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on e
 - [x] M1  Setting up the environment; your first program; how compilation actually runs _(Q&A reviewed; note corrected for Java 25 instance-main)_
 - [x] M2  Variables, data types, and literals _(Q&A reviewed; 5/5 debugging; compiler-phase pipeline discovered by experiment)_
 - [x] M3  Operators (arithmetic, relational, logical, bitwise, assignment) _(Q&A reviewed; bitwise 5/5; debugging 4/4)_
-- [ ] M4  Type conversion, casting, and overflow in practice
+- [x] M4  Type conversion, casting, and overflow in practice _(Q&A reviewed; debugging solved over three attempts; cast placement recorded as a weak area)_
 - [ ] M5  Control flow: if/else, switch
 - [ ] M6  Loops: for, while, do-while, break/continue
 - [ ] M7  Arrays (1D and 2D)
@@ -104,11 +104,13 @@ _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on e
 | P1-M1 First Java Program (+ compile vs run) | 2026-08-07 | 2026-08-13 (weak area CLOSED — 3-day recall) |
 | P1-M2 Variables, Data Types & Literals | 2026-08-10 | 2026-08-15 (3-day recall) |
 | P1-M3 Operators | 2026-08-12 | 2026-08-13 (1-day recall) |
+| P1-M4 Type Conversion, Casting & Overflow | 2026-08-12 | 2026-08-13 (1-day recall — cast placement) |
 
 ## Weak areas
 | Area | Evidence | Fix |
 |------|----------|-----|
-| **Compiling is not correctness** | Day 009: the first `Cart.java` compiled *and ran*, while printing `false` for a 7-item cart and `-56` for a discount of 200 — two of four bugs untouched, and one "fixed" by hardcoding `hasItems = false` to silence the compile error rather than restoring the intent. Same shape as Day 008's `byte` fix left in a comment. | **Edit → run → compare the output against what it *should* say.** A vanished red squiggle is not a passing test. |
+| **Where the cast goes** | Day 010, four attempts. `(long)(a + b)` converts an already-overflowed `int`; `(byte) level + 1` is defeated by precedence (a cast binds tighter than `+`). Also: tried to attach `L` to an `int` *variable* — `L` is a literal suffix only. | **Widening casts an operand *before* the maths (`(long) a + b`); narrowing brackets the maths and shrinks *after* it (`(byte)(level + 1)`).** Put the cast wherever it prevents the loss. |
+| **Compiling is not correctness** | Day 009's `Cart.java` and Day 010's `Report.java` both compiled *and ran* while printing wrong numbers (`false`/`-56`, then `-1894967296`/`0.0`). | **Edit → run → compare the output against what it *should* say.** A vanished red squiggle is not a passing test. |
 | Right answer, mechanism stated backwards | Day 009 Q2 described `++i` as "use 11, then increment" (it increments *first*, handing over 12); Q4 explained `&`'s crash as "checks right to left" (Java is **always** left to right). Both conclusions were correct. | Say the mechanism out loud and check it against a dry run — a right answer from wrong reasoning fails the follow-up question. |
 | char arithmetic — `+1` vs `+32` | Day 008 Q3: answered `(char)('A' + 1)` as `'a'`. Right mechanism, wrong constant. | `+1` → next letter (`'B'`); `+32` → upper→lower case, the gap from the Day 002 ASCII table. |
 

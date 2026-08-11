@@ -287,6 +287,51 @@ const notes = {
       },
     ],
   },
+
+  'p1:m4': {
+    day: 10,
+    path: 'phase-01-java-fundamentals/day-010-type-conversion-and-casting.md',
+    keyPoints: [
+      '**The ladder:** `byte → short → int → long → float → double`, with `char` joining at `int`. **Going up is automatic; coming down needs an explicit cast.**',
+      '**A cast is a promise, not a conversion.** It stops the compiler objecting; the data loss still happens. `(byte) 300` is `44`, `(byte) 130` is `-126`, `(int) 99.99` is `99` — **truncated, not rounded**. Use `Math.round` to round.',
+      '**`byte`, `short` and `char` are promoted to `int` in every arithmetic expression** — the CPU works in 32-bit words. That is why `byte + byte` cannot be assigned to a `byte`, and why `\'A\' + 1` is `66`.',
+      'Mixed types: any `double` → the whole expression is `double`; else any `float` → `float`; else any `long` → `long`; **otherwise everything is `int`**.',
+      'Implicit narrowing is allowed **only for compile-time constants**: `byte b = 100;` ✅ and `byte b = finalInt;` ✅, but `byte b = someInt;` ❌ — a variable\'s value is not known until run time.',
+      '**Widening can still lose precision.** `int` → `float` past 2^24 (`16777217` becomes `1.6777216E7`), and `long` → `double` past 2^53 — those types spend bits on the exponent.',
+      '**`double` → `int` SATURATES; integer arithmetic WRAPS.** `(int) 1e20` clamps to `Integer.MAX_VALUE` and `(int) Double.NaN` is `0`, but `Integer.MAX_VALUE + 1` wraps to `MIN_VALUE`. Opposite behaviours.',
+      '**An `int` of milliseconds overflows after 24 days.** Durations, timeouts and TTLs must be `long` — which is why `System.currentTimeMillis()` returns one.',
+      '**`Math.addExact` / `multiplyExact` / `toIntExact` throw `ArithmeticException`** instead of wrapping. A thrown exception is a bug you find; a wrapped integer is a bug you ship.',
+      '**`String` is not on the ladder** — no cast crosses it. `Integer.parseInt` / `String.valueOf`, and beware `"123" + 1` being `"1231"`. Parsing throws `NumberFormatException` at run time.',
+      "**Where the cast goes:** WIDENING casts an operand **before** the maths (`(long) a + b`); NARROWING brackets the maths and shrinks **after** it (`(byte)(level + 1)`). `(long)(a + b)` converts an already-wrong number, and `(byte) level + 1` is defeated by precedence. Put the cast wherever it *prevents* the loss.",
+      '**`L` is a literal suffix, not something you attach to a variable.** `45L` is fine; `totalViewsL` is meaningless — widen a variable with `(long) totalViews`.',
+    ],
+    interview: [
+      {
+        q: '`long total = a + b;` where both are `int` — is that safe?',
+        a: '**No.** The addition is performed in `int` and can overflow before the widening ever happens; the `long` on the left arrives too late. Cast an operand: `(long) a + b`.',
+      },
+      {
+        q: 'Why does `byte a = 1, b = 2; byte c = a + b;` not compile?',
+        a: '`byte`, `short` and `char` are promoted to `int` in arithmetic expressions, so `a + b` has type `int`, and assigning an `int` to a `byte` is a narrowing conversion requiring an explicit cast: `(byte)(a + b)`.',
+      },
+      {
+        q: 'Is widening always lossless?',
+        a: 'No. `int` → `float` and `long` → `double`/`float` are widening conversions that can lose **precision** — `float` has only ~24 significant bits, so `16777217` (2^24 + 1) becomes `16777216`. Widening guarantees range, not exactness.',
+      },
+      {
+        q: 'What is the difference between `(int) 1e20` and `Integer.MAX_VALUE + 1`?',
+        a: 'The cast **clamps** — `(int) 1e20` is `Integer.MAX_VALUE` and `(int) Double.NaN` is `0`. The arithmetic **wraps** — `MAX_VALUE + 1` becomes `MIN_VALUE`. Two different mechanisms that are easy to conflate.',
+      },
+      {
+        q: 'How do you make integer overflow fail loudly?',
+        a: '`Math.addExact`, `Math.multiplyExact`, `Math.toIntExact` and friends throw `ArithmeticException: integer overflow` rather than wrapping silently. Use them for money, counts and IDs.',
+      },
+      {
+        q: 'Can you write `myIntVariableL` to make a variable a `long`?',
+        a: 'No — `L` is a **literal** suffix, valid only on a number written in source (`45L`). A variable\'s type is fixed at its declaration; widen it with a cast, `(long) myIntVariable`.',
+      },
+    ],
+  },
 };
 
 /** Full note on GitHub for a given entry. */

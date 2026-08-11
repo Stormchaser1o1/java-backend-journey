@@ -6,15 +6,15 @@ const progress = {
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
     lastSession: "2026-08-12",
-    dayNumber: 9,
-    streakDays: 9,
-    overallProgressPercent: 8.5,
+    dayNumber: 10,
+    streakDays: 10,
+    overallProgressPercent: 9.5,
   },
   nextAction: {
     phase: "Phase 1 — Java Fundamentals",
-    module: "M4 — Type Conversion, Casting, and Overflow",
+    module: "M5 — Control Flow: if/else and switch",
     description:
-      "Day 009's (double) cast, the hidden truncation inside +=, and the binary-search midpoint overflow stop being side notes and become the subject: widening vs narrowing, implicit promotion rules, and how to make overflow fail loudly instead of silently.",
+      "The branches written in pseudocode since Day 006 finally become real Java — including the dangling-else trap, switch fall-through, and the modern arrow-form switch that removes both.",
   },
   currentPhaseId: "p1",
   phases: [
@@ -39,7 +39,7 @@ const progress = {
         { id: "m1", name: "Environment setup; first program; how compilation actually runs", done: true },
         { id: "m2", name: "Variables, data types, and literals", done: true },
         { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: true },
-        { id: "m4", name: "Type conversion, casting, and overflow in practice", done: false },
+        { id: "m4", name: "Type conversion, casting, and overflow in practice", done: true },
         { id: "m5", name: "Control flow: if/else, switch", done: false },
         { id: "m6", name: "Loops: for, while, do-while, break/continue", done: false },
         { id: "m7", name: "Arrays (1D and 2D)", done: false },
@@ -72,11 +72,16 @@ const progress = {
     { topic: "P1-M1 First Java Program (+ compile vs run)", taughtOn: "2026-08-07", nextRevision: "2026-08-13", label: "weak area CLOSED — 3-day recall" },
     { topic: "P1-M2 Variables, Data Types & Literals", taughtOn: "2026-08-10", nextRevision: "2026-08-15", label: "3-day recall" },
     { topic: "P1-M3 Operators", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
+    { topic: "P1-M4 Type Conversion, Casting & Overflow", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall — cast placement" },
   ],
   weakAreas: [
     {
+      topic: "Where the cast goes",
+      note: "Day 010, four attempts: `(long)(a + b)` converts an already-overflowed int, and `(byte) level + 1` is defeated by precedence (a cast binds tighter than +). The rule that resolves both: WIDENING casts an operand BEFORE the maths; NARROWING brackets the maths and shrinks AFTER it. Put the cast wherever it prevents the loss. Related: `L` is a literal suffix and cannot be attached to a variable — cast instead.",
+    },
+    {
       topic: "Compiling is not correctness",
-      note: "Day 009: the first Cart.java submission compiled AND ran, while still printing `false` for a 7-item cart and `-56` for a discount of 200 — two of four bugs untouched, one 'fixed' by hardcoding `hasItems = false` to silence the compile error rather than restoring the intent. Same shape as Day 008's byte fix left in a comment. Rule: edit, run, then check the output against what it SHOULD say.",
+      note: "Day 009's Cart.java and Day 010's Report.java both compiled AND ran while printing wrong numbers (`false`/`-56`, then `-1894967296`/`0.0`). A vanished compile error is not a passing test. Rule: edit, run, then compare the output against what it SHOULD say.",
     },
     {
       topic: "Right answer, mechanism stated backwards",
