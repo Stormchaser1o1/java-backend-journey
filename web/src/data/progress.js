@@ -6,15 +6,15 @@ const progress = {
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
     lastSession: "2026-08-12",
-    dayNumber: 11,
-    streakDays: 11,
-    overallProgressPercent: 10.5,
+    dayNumber: 12,
+    streakDays: 12,
+    overallProgressPercent: 11.5,
   },
   nextAction: {
     phase: "Phase 1 — Java Fundamentals",
-    module: "M6 — Loops: for, while, do-while, break/continue",
+    module: "M7 — Arrays (1D and 2D)",
     description:
-      "The off-by-one errors warned about on Day 006 finally get to bite for real — along with infinite loops, loop scope, and why for and while are the same machine wearing different clothes.",
+      "Where `i < n` stops being a convention and starts being the reason — array indices run 0 to length-1, so an off-by-one is no longer a wrong number but an ArrayIndexOutOfBoundsException.",
   },
   currentPhaseId: "p1",
   phases: [
@@ -41,7 +41,7 @@ const progress = {
         { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: true },
         { id: "m4", name: "Type conversion, casting, and overflow in practice", done: true },
         { id: "m5", name: "Control flow: if/else, switch", done: true },
-        { id: "m6", name: "Loops: for, while, do-while, break/continue", done: false },
+        { id: "m6", name: "Loops: for, while, do-while, break/continue", done: true },
         { id: "m7", name: "Arrays (1D and 2D)", done: false },
         { id: "m8", name: "Strings and the String pool", done: false },
         { id: "m9", name: "Methods: parameters, return types, overloading", done: false },
@@ -74,6 +74,7 @@ const progress = {
     { topic: "P1-M3 Operators", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
     { topic: "P1-M4 Type Conversion, Casting & Overflow", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall — cast placement" },
     { topic: "P1-M5 Control Flow: if/else and switch", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
+    { topic: "P1-M6 Loops: for, while, do-while", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
   ],
   weakAreas: [
     {
@@ -85,8 +86,8 @@ const progress = {
       note: "Day 010, four attempts: `(long)(a + b)` converts an already-overflowed int, and `(byte) level + 1` is defeated by precedence (a cast binds tighter than +). The rule that resolves both: WIDENING casts an operand BEFORE the maths; NARROWING brackets the maths and shrinks AFTER it. Put the cast wherever it prevents the loss. Related: `L` is a literal suffix and cannot be attached to a variable — cast instead.",
     },
     {
-      topic: "Submit only what you have compiled",
-      note: "Four exercises running were sent without being run first, and every one came back with errors javac would have shown in seconds — Day 011's had three missing semicolons that HID the real error underneath (`break` is a separate statement, so `println(...) break;` is a parse error). IMPROVING: the final Day 011 submission was clearly run first and came back clean. Rule: paste, javac, read, fix, then send.",
+      topic: "Submit only what you have compiled — RESOLVED",
+      note: "Four exercises in a row were sent without being run first, and every one came back with errors javac would have shown in seconds. Closed on Days 011-012: both submissions were compiled and run before sending, and both were correct first time. Keep the habit — paste, javac, read, fix, then send.",
     },
     {
       topic: "Right answer, mechanism stated backwards",

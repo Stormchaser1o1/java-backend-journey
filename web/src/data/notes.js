@@ -374,6 +374,50 @@ const notes = {
       },
     ],
   },
+
+  'p1:m6': {
+    day: 12,
+    path: 'phase-01-java-fundamentals/day-012-loops.md',
+    keyPoints: [
+      '**`for (init; condition; update)`** runs in the order **init → check → body → update → check…** The check comes *before* the body, so a `for` can run **zero** times.',
+      '**`for` and `while` are the same machine** — `for` just gathers the three parts onto one line where none can be forgotten. Use `for` when **counting**, `while` when **waiting on a condition**.',
+      '**`do-while` checks at the bottom, so it always runs at least once** — even when the condition was false from the start. Note the trailing `;` after `while (...)`.',
+      '**Off-by-one:** `i = 0; i < n` and `i = 1; i <= n` each give exactly *n* iterations. Mixing them gives *n+1* or *n−1*. When unsure, **dry-run the first and last iteration**.',
+      '**`break`** leaves the loop entirely; **`continue`** skips to the next iteration. ⚠️ **`continue` in a `while` can hang forever** if the update sits at the bottom of the body — it gets skipped. In a `for` the update is in the header, so it always runs.',
+      'Two fixes for that hang, and they are not equal: advancing before the `continue` is a **local** fix; rewriting as a `for` is a **structural** one that makes the bug impossible. Prefer structural — same reasoning as the arrow `switch`.',
+      '⚠️ **`for (int i = 0; i < 5; i++);`** — a stray semicolon **is** the loop body. The loop still runs all 5 times doing nothing, then any following block runs **once** on its own. **No warning**, because an empty statement and a bare block are both legal Java; only a linter catches it.',
+      '**Never use a `double` as a loop counter**, and never `!=` on one. `for (double d = 0; d != 1.0; d += 0.1)` never terminates — ten additions of 0.1 give `0.9999999999999999`.',
+      '**A `for` variable dies with the loop** (`cannot find symbol` afterwards); one declared outside survives. That is a feature — it cannot leak, and `i` is free to reuse.',
+      '**Nested loops multiply:** 3 outer × 5 inner = 15 inner iterations — the first taste of O(n²). **`break` leaves only the innermost loop**; use a **labelled break** (`break outer;`) to escape both.',
+      '**Bound any loop that waits on an external system.** An unbounded retry hangs a server thread on one bad response.',
+    ],
+    interview: [
+      {
+        q: 'What is the difference between `while` and `do-while`?',
+        a: '`while` checks the condition **before** the body, so it can run zero times. `do-while` checks **after**, so it always runs **at least once**. Use `do-while` when the first attempt must happen regardless — menu prompts, input validation.',
+      },
+      {
+        q: 'How many times does `for (int i = 10; i > 0; i -= 3)` run?',
+        a: '**Four** — `i` takes 10, 7, 4, 1, then becomes −2 and fails the check. Dry-running the first and last iteration is the reliable way to answer this class of question.',
+      },
+      {
+        q: 'What does `for (int i = 0; i < 5; i++);` do?',
+        a: 'It loops **5 times with an empty body** — the semicolon is the body. Any block written after it is a plain block that runs **once**. It compiles with no warning because an empty statement is a legal loop body (`while (readNext());` uses this deliberately) and a bare `{ }` is a legal statement.',
+      },
+      {
+        q: 'Why can `continue` cause an infinite loop in a `while` but not a `for`?',
+        a: 'In a `while`, the update is a statement inside the body, so `continue` jumps over it and the condition never changes. In a `for`, the update lives in the header and runs on every `continue`. This is a strong argument for using `for` whenever you are counting.',
+      },
+      {
+        q: 'How do you break out of nested loops?',
+        a: 'A plain `break` leaves only the innermost loop. Label the outer loop and use `break outer;` to leave both at once.',
+      },
+      {
+        q: 'Why is `for (double d = 0.0; d != 1.0; d += 0.1)` dangerous?',
+        a: 'Floating-point drift — 0.1 has no exact binary representation, so `d` steps straight past 1.0 without ever equalling it and the loop never terminates. Loop counters should be `int`, and floating-point values should never be compared with `==` or `!=`.',
+      },
+    ],
+  },
 };
 
 /** Full note on GitHub for a given entry. */

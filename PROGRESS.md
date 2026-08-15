@@ -9,12 +9,12 @@
 
 ## ▶ RESUME HERE (read this first in a new session)
 
-**Next action:** Teach **Phase 1 · Module 6 — Loops: `for`, `while`, `do-while`, `break`/`continue`.**
-Nothing is pending from the user. M5 is fully reviewed, closed and published.
+**Next action:** Teach **Phase 1 · Module 7 — Arrays (1D and 2D).**
+Nothing is pending from the user. M6 is fully reviewed, closed and published.
 
-**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1–M5 complete (Days 007–011). Next note
-file is `notes/phase-01-java-fundamentals/day-012-loops.md`, next code dir is
-`code/phase-01-java-fundamentals/m6-loops/`.
+**Where we are:** Phase 0 complete (Days 001–006). Phase 1 M1–M6 complete (Days 007–012). Next note
+file is `notes/phase-01-java-fundamentals/day-013-arrays.md`, next code dir is
+`code/phase-01-java-fundamentals/m7-arrays/`.
 
 **Teaching loop (strict order, do not reorder):**
 1. Teach the module — 10-step order, ending with Interactive Check + Debugging Exercise + Homework.
@@ -38,14 +38,15 @@ the three deliberate-error experiments; `Even.java` (ternary + `%`); the five di
 
 ---
 
-**Last session:** 2026-08-12 (Day 011)
+**Last session:** 2026-08-12 (Day 012)
 **Current Phase:** Phase 1 — Java Fundamentals
-**Current Module:** Module 6 — Loops: `for`, `while`, `do-while`, `break`/`continue`
-**Status:** M5 complete — Q&A reviewed (Q1/Q2 correct; Q3–Q5 corrected), **debugging exercise 4/4**
-with `Ticket.java` verified (`javac` exit 0, prints `normal` / `type = adult`). Notable: the final
-submission was compiled before sending — first clean one — and reached for the **arrow switch
-expression** unprompted rather than merely adding `break`. Awaiting go-ahead for M6.
-**Overall progress:** ~10.5%
+**Current Module:** Module 7 — Arrays (1D and 2D)
+**Status:** M6 complete — Q&A reviewed (Q1–Q3 correct; Q4/Q5 partial), **debugging exercise 4/4**
+with `Stats.java` verified (`javac` exit 0, prints `sum = 55 … found = 21`). **"Submit only what you
+have compiled" is now RESOLVED** — two clean, pre-compiled submissions in a row. Also: user
+independently discovered the filename-case behaviour, investigated and written up as **§4d of the
+Day 007 note**. Awaiting go-ahead for M7.
+**Overall progress:** ~11.5%
 
 **Phase 0 — Computer Fundamentals: COMPLETE** (6/6 modules, Days 001-006)
 **Format note:** Phase 1 onward resumes full Q&A — Interactive Check, Debugging Exercise, and Homework are back.
@@ -71,7 +72,7 @@ _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on e
 - [x] M3  Operators (arithmetic, relational, logical, bitwise, assignment) _(Q&A reviewed; bitwise 5/5; debugging 4/4)_
 - [x] M4  Type conversion, casting, and overflow in practice _(Q&A reviewed; debugging solved over three attempts; cast placement recorded as a weak area)_
 - [x] M5  Control flow: if/else, switch _(Q&A reviewed; debugging 4/4; arrow switch expression used unprompted)_
-- [ ] M6  Loops: for, while, do-while, break/continue
+- [x] M6  Loops: for, while, do-while, break/continue _(Q&A reviewed; debugging 4/4; pre-compiled submission)_
 - [ ] M7  Arrays (1D and 2D)
 - [ ] M8  Strings and the String pool
 - [ ] M9  Methods: parameters, return types, overloading
@@ -106,13 +107,14 @@ _Full Q&A resumes here: Interactive Check, Debugging Exercise, and Homework on e
 | P1-M3 Operators | 2026-08-12 | 2026-08-13 (1-day recall) |
 | P1-M4 Type Conversion, Casting & Overflow | 2026-08-12 | 2026-08-13 (1-day recall — cast placement) |
 | P1-M5 Control Flow: if/else and switch | 2026-08-12 | 2026-08-13 (1-day recall) |
+| P1-M6 Loops: for, while, do-while | 2026-08-12 | 2026-08-13 (1-day recall) |
 
 ## Weak areas
 | Area | Evidence | Fix |
 |------|----------|-----|
 | **`=` assigns, it never checks** | Day 011, twice in one submission: Q4 explained `if (flag = true)` as "checks if the flag is true", and the debugging exercise kept `if (isMember = true)` while only adding braces around it. | Both `x = 5` and `flag = true` **assign**; the boolean one merely leaves a value of the type `if` demands, so the type system can't catch it. **Write `if (flag)`** — no operator, nothing to get wrong. |
 | **Where the cast goes** | Day 010, four attempts. `(long)(a + b)` converts an already-overflowed `int`; `(byte) level + 1` is defeated by precedence (a cast binds tighter than `+`). Also: tried to attach `L` to an `int` *variable* — `L` is a literal suffix only. | **Widening casts an operand *before* the maths (`(long) a + b`); narrowing brackets the maths and shrinks *after* it (`(byte)(level + 1)`).** Put the cast wherever it prevents the loss. |
-| **Submit only what you have compiled** | Four exercises running were sent without being run first, and every one came back with errors `javac` shows in seconds. Day 011's had three missing semicolons (`break` is a separate statement, so `println(...) break;` is a parse error) that **hid** the real error underneath. **IMPROVING** — the final Day 011 submission was compiled first and came back clean. | **Paste → `javac` → read → fix → send.** Also: a vanished red squiggle is not a passing test — compare the output against what it *should* say. |
+| ~~Submit only what you have compiled~~ | Four exercises in a row were sent without being run first, every one returning errors `javac` shows in seconds. | ✅ **RESOLVED on Days 011–012** — two pre-compiled submissions in a row, both correct first time. Keep the habit: paste → `javac` → read → fix → send. |
 | Right answer, mechanism stated backwards | Day 009 Q2 described `++i` as "use 11, then increment" (it increments *first*, handing over 12); Q4 explained `&`'s crash as "checks right to left" (Java is **always** left to right). Both conclusions were correct. | Say the mechanism out loud and check it against a dry run — a right answer from wrong reasoning fails the follow-up question. |
 | char arithmetic — `+1` vs `+32` | Day 008 Q3: answered `(char)('A' + 1)` as `'a'`. Right mechanism, wrong constant. | `+1` → next letter (`'B'`); `+32` → upper→lower case, the gap from the Day 002 ASCII table. |
 
