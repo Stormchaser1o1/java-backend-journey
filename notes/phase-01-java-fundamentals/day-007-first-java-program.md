@@ -199,6 +199,63 @@ That answer is strictly better than the textbook one, and it shows you know the 
 
 ---
 
+## 4d. Filename case — why `loops.java` sometimes "works"
+
+*(Added 2026-08-12, from a discovery made during Module 6. §3 says the file name must exactly match the public class name. That is true — but on Windows and macOS there are two separate reasons it can appear not to be, and they are worth separating.)*
+
+Setup: a file **literally named `loops.java`** on disk, containing `public class Loops`.
+
+### Experiment 1 — `javac` with the real (lowercase) name: **rejected**
+
+```
+PS> javac loops.java
+loops.java:1: error: class Loops is public, should be declared in a file named Loops.java
+public class Loops {
+       ^
+1 error
+```
+
+**The rule is enforced.** `javac` compared the name you handed it (`loops.java`) with the public class (`Loops`) and refused. No `.class` file was produced.
+
+### Experiment 2 — `javac` with the *capitalised* name, file still lowercase on disk: **accepted**
+
+```
+PS> javac Loops.java        # note: there is NO file called Loops.java!
+exit 0
+PS> ls
+Loops.class    loops.java
+```
+
+**This is where the operating system's case-insensitivity actually shows up.** Windows (NTFS) and macOS (APFS) preserve case but match case-*insensitively*, so the OS happily opened `loops.java` when asked for `Loops.java`. `javac` then compared the name **it was given** — `Loops.java` — against `public class Loops`, found them identical, and was satisfied.
+
+**The compiler never learns the real name on disk.** It checks the string you typed, and the OS quietly resolved it to a differently-cased file.
+
+> On Linux (ext4, case-**sensitive**) Experiment 2 fails with `file not found`. This is the single most common cause of "it compiles on my laptop but the CI build can't find the class" — the developer is on Windows or macOS, the build server is on Linux.
+
+### Experiment 3 — the single-file launcher: the rule does not apply at all
+
+```
+PS> java loops.java
+ran from a lowercase filename
+exit 0
+```
+
+**`java Foo.java` runs the file directly, and it does not enforce the public-class/filename rule.** This is the *single-file source-code launcher* (**JEP 330**, Java 11+): it compiles the source in memory and runs the first class it finds, never writing a `.class` file. It has no `.class` filename to reconcile, so the rule is simply not applicable.
+
+Because every demo in this course is run as `java Something.java`, **this is the mechanism you are most likely to have hit.**
+
+### Summary
+
+| Command | File on disk | Result |
+|---|---|---|
+| `javac loops.java` | `loops.java` | ❌ `class Loops is public, should be declared in a file named Loops.java` |
+| `javac Loops.java` | `loops.java` | ✅ compiles — the **OS** matched the name case-insensitively |
+| `java loops.java` | `loops.java` | ✅ runs — the single-file launcher (JEP 330) does not apply the rule |
+
+**Practical rule: always name the file exactly like the public class.** The two escape hatches above are an OS quirk that breaks on Linux, and a scripting shortcut that is not how real projects are built.
+
+---
+
 ## 5. Real-world usage
 
 Every single Spring Boot application you'll write from Phase 7 onward starts execution from a `main` method that looks almost exactly like this one — just with one extra line (`SpringApplication.run(...)`) that boots the whole framework. You just wrote the literal ancestor of every backend you're going to build.

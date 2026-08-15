@@ -184,6 +184,8 @@ const notes = {
       '`static` = belongs to the **class**, not an object. It does *not* mean "constant" (that is `final`).',
       '⚠️ **Java 25 (JEP 512)** also allows an *instance* `main` — even `void main()` with no `public`, `static` or args, and even a file with no class at all. But `public static void main(String[] args)` is what all real code and every interview uses.',
       '`javac Hello.java` → `Hello.class` (bytecode). Run with `java Hello` — **no** `.class` extension. Every statement ends with `;`.',
+      '⚠️ **Filename case (see §4d):** `javac loops.java` containing `public class Loops` is **rejected**. But `javac Loops.java` *succeeds* when the file on disk is `loops.java`, because Windows/macOS match filenames case-insensitively — the compiler only ever checks the name **you typed**. On case-sensitive Linux the same command fails, which is the classic "works on my laptop, breaks in CI" bug.',
+      '**`java Foo.java` (the single-file launcher, JEP 330, Java 11+) does not enforce the filename rule at all** — it compiles in memory and writes no `.class`, so there is nothing to reconcile. That is why running demos this way hides the rule.',
     ],
     interview: [
       {
