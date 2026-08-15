@@ -6,15 +6,15 @@ const progress = {
     repo: "https://github.com/Stormchaser1o1/java-backend-journey",
     startedOn: "2026-08-07",
     lastSession: "2026-08-12",
-    dayNumber: 10,
-    streakDays: 10,
-    overallProgressPercent: 9.5,
+    dayNumber: 11,
+    streakDays: 11,
+    overallProgressPercent: 10.5,
   },
   nextAction: {
     phase: "Phase 1 — Java Fundamentals",
-    module: "M5 — Control Flow: if/else and switch",
+    module: "M6 — Loops: for, while, do-while, break/continue",
     description:
-      "The branches written in pseudocode since Day 006 finally become real Java — including the dangling-else trap, switch fall-through, and the modern arrow-form switch that removes both.",
+      "The off-by-one errors warned about on Day 006 finally get to bite for real — along with infinite loops, loop scope, and why for and while are the same machine wearing different clothes.",
   },
   currentPhaseId: "p1",
   phases: [
@@ -40,7 +40,7 @@ const progress = {
         { id: "m2", name: "Variables, data types, and literals", done: true },
         { id: "m3", name: "Operators (arithmetic, relational, logical, bitwise, assignment)", done: true },
         { id: "m4", name: "Type conversion, casting, and overflow in practice", done: true },
-        { id: "m5", name: "Control flow: if/else, switch", done: false },
+        { id: "m5", name: "Control flow: if/else, switch", done: true },
         { id: "m6", name: "Loops: for, while, do-while, break/continue", done: false },
         { id: "m7", name: "Arrays (1D and 2D)", done: false },
         { id: "m8", name: "Strings and the String pool", done: false },
@@ -73,15 +73,20 @@ const progress = {
     { topic: "P1-M2 Variables, Data Types & Literals", taughtOn: "2026-08-10", nextRevision: "2026-08-15", label: "3-day recall" },
     { topic: "P1-M3 Operators", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
     { topic: "P1-M4 Type Conversion, Casting & Overflow", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall — cast placement" },
+    { topic: "P1-M5 Control Flow: if/else and switch", taughtOn: "2026-08-12", nextRevision: "2026-08-13", label: "1-day recall" },
   ],
   weakAreas: [
+    {
+      topic: "`=` assigns, it never checks",
+      note: "Day 011, twice in one submission: Q4 explained `if (flag = true)` as 'checks if the flag is true', and the debugging exercise kept `if (isMember = true)` while only adding braces around it. Both `x = 5` and `flag = true` ASSIGN; the difference is that the boolean one leaves a value of the type `if` demands, so the type system cannot catch it. Write `if (flag)` — no operator, nothing to get wrong.",
+    },
     {
       topic: "Where the cast goes",
       note: "Day 010, four attempts: `(long)(a + b)` converts an already-overflowed int, and `(byte) level + 1` is defeated by precedence (a cast binds tighter than +). The rule that resolves both: WIDENING casts an operand BEFORE the maths; NARROWING brackets the maths and shrinks AFTER it. Put the cast wherever it prevents the loss. Related: `L` is a literal suffix and cannot be attached to a variable — cast instead.",
     },
     {
-      topic: "Compiling is not correctness",
-      note: "Day 009's Cart.java and Day 010's Report.java both compiled AND ran while printing wrong numbers (`false`/`-56`, then `-1894967296`/`0.0`). A vanished compile error is not a passing test. Rule: edit, run, then compare the output against what it SHOULD say.",
+      topic: "Submit only what you have compiled",
+      note: "Four exercises running were sent without being run first, and every one came back with errors javac would have shown in seconds — Day 011's had three missing semicolons that HID the real error underneath (`break` is a separate statement, so `println(...) break;` is a parse error). IMPROVING: the final Day 011 submission was clearly run first and came back clean. Rule: paste, javac, read, fix, then send.",
     },
     {
       topic: "Right answer, mechanism stated backwards",

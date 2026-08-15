@@ -332,6 +332,46 @@ const notes = {
       },
     ],
   },
+
+  'p1:m5': {
+    day: 11,
+    path: 'phase-01-java-fundamentals/day-011-control-flow.md',
+    keyPoints: [
+      '**In an `if / else if / else` chain the first true condition wins and the chain stops** — nothing below is even tested. Order overlapping tests **narrowest first**, or the widest one swallows everything.',
+      '**Conditions must be `boolean`.** Java has no truthiness: `if (count)` does not compile, `if (count != 0)` does.',
+      '⚠️ **`if (flag = true)` compiles and is always true.** Both `x = 5` and `flag = true` **assign** — neither compares. The difference is the leftover value\'s type: `int` is rejected by `if`, `boolean` is accepted. **Write `if (flag)`** — no operator, nothing to get wrong.',
+      '**An unbraced `if` owns exactly ONE statement.** The compiler does not read indentation. Apple\'s 2014 "goto fail" bug was this shape — a line outside an unbraced `if` skipped SSL validation on every iPhone and Mac.',
+      '**A dangling `else` binds to the nearest unmatched `if`**, whatever the indentation suggests. Braces remove the ambiguity.',
+      '**A classic `switch` falls through without `break`** — `case` labels are **entry points, not boundaries**. Matching says where to start; only `break` says where to stop. `case 2` with no breaks also runs cases 3, 4 and `default`.',
+      'Deliberate fall-through has exactly one good use: **stacked case labels sharing one body** (`case 1: case 3: case 5: days = 31; break;`).',
+      '**The arrow `switch` (`->`, Java 14+) has no fall-through and needs no `break`.** Only the matching arm runs.',
+      '**A switch *expression* must be exhaustive** — omitting `default` is `error: the switch expression does not cover all possible input values`. A *statement* switch has no such rule, so a forgotten case there silently does nothing. Use `yield` to return from a block arm.',
+      '`switch` accepts `byte`, `short`, `char`, `int`, `String`, enums and wrappers — **not `long`, `float`, `double` or `boolean`**. `switch` on a `String` uses `.equals()` internally, so it is safe.',
+      '**Guard clauses** — handle each failure and `return` immediately — keep the happy path unindented. This is the shape of every Spring controller.',
+    ],
+    interview: [
+      {
+        q: 'Why does `if (flag = true)` compile when `if (x = 5)` does not?',
+        a: 'Both are **assignments**, not comparisons. An assignment expression evaluates to the assigned value: `x = 5` yields an `int`, which `if` rejects, but `flag = true` yields a `boolean`, which is exactly what `if` wants. This is the one place the type system cannot protect you — write `if (flag)`.',
+      },
+      {
+        q: 'What happens if you forget `break` in a `switch`?',
+        a: '**Silent fall-through**, not a compile error. Once a case matches, execution continues into every case below it, including `default`. With `day = 2`, a switch printing A/B/C/D per case prints `BCD`. The arrow form (`->`) makes this impossible.',
+      },
+      {
+        q: 'What is the dangling-else problem?',
+        a: 'When `if`s are nested without braces, an `else` binds to the **nearest unmatched `if`** regardless of how the code is indented. `if (a) if (b) X; else Y;` attaches `Y` to `if (b)`, not `if (a)`.',
+      },
+      {
+        q: 'Why prefer a switch expression over a switch statement?',
+        a: 'It must be **exhaustive**, so a missing case is a compile error rather than silently doing nothing; it removes `break` entirely; and it assigns directly to a variable, which also satisfies definite assignment. With enums it needs no `default` at all — so adding a constant later makes the compiler point at every switch to update.',
+      },
+      {
+        q: 'Can you `switch` on a `double` or a `long`?',
+        a: 'No. `switch` accepts `byte`, `short`, `char`, `int`, `String`, enums and their wrapper types only — not `long`, `float`, `double` or `boolean`.',
+      },
+    ],
+  },
 };
 
 /** Full note on GitHub for a given entry. */
